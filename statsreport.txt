@@ -1,0 +1,7 @@
+=========Statistical Report=======
+
+========DATASET 2=============
+mean: 5.406250
+mode: 10
+Standard Deviation: 3.407110
+Median: 5
