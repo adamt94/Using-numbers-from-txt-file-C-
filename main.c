@@ -119,15 +119,15 @@ double calculateStandardDeviation(int length, int* array) {
     return sqrt(sum / length);
 }
 
-void histogram(int length, int* array) {
+void histogram(int length, int* array,FILE *f) {
     int i = 0;
 
     int j = 0;
     for (i = 1; i < 11; i++) {
-        printf("\n%d: ", i);
+        fprintf(f,"\r\n%d: ", i);
         for (j = 0; j < length; j++) {
             if (i == array[j]) {
-                printf("*");
+                fprintf(f,"*");
             }
         }
 
@@ -143,27 +143,6 @@ int main(int argc, char** argv) {
     char* modes = "r";
     int n, i, *ptr;
     FILE *input = fopen(h, modes);
-    if (input == NULL) {
-        printf("Error: unable to open file\n");
-        exit(EXIT_FAILURE);
-    }
-    fscanf(input, "%d", &n);
-    ptr = (int*) malloc(n * sizeof (int));
-    if (ptr == NULL) {
-        printf("memory not allocated");
-        exit(0);
-    }
-    for (i = 0; i < n; i++) {
-        fscanf(input, "%d", ptr + i);
-
-    }
-    printf("STATISTICAL REPORT\n====================\n");
-    printf("mean: %f", calculateMean(ptr, n)); //function to calculate mean
-    printf("\nmode: %d", calculateMode(n, ptr));
-
-    printf("\nStandard Deviation: %f", calculateStandardDeviation(n, ptr), "\n");
-    printf("\nMedian: %d", calculateMedian(n, ptr), "\n");
-    histogram(n, ptr);
 
     input = fopen(e, modes);
     if (input == NULL) {
@@ -194,7 +173,7 @@ int main(int argc, char** argv) {
 
     fprintf(f,"\r\nStandard Deviation: %f", calculateStandardDeviation(n, ptr), "\n");
     fprintf(f,"\r\nMedian: %d", calculateMedian(n, ptr), "\n");
-    histogram(n, ptr);
+    histogram(n, ptr,f);
     printf("\n");
     
   
